@@ -16,6 +16,7 @@ ARCA = "Template:ArbComOpenTasks/ClarificationAmendment"
 AM = "Template:ArbComOpenTasks/Motions"
 ##Categories
 OpenArbCaseCat = "Open ArbCom Cases"
+ArbCaseCat = "Wikipedia arbitration cases"
 ##Bot related
 
 #Bot Templates
