@@ -22,7 +22,7 @@ def callArbPageCollect():
 
 def callAPI(params):
     print params
-    req = api.Request(site,**params)
+    req = api.Request(useWiki,**params)
     return req.submit()
 
 def pageRetrival(page):
