@@ -14,6 +14,8 @@ ARC = "Template:ArbComOpenTasks/CaseRequests"
 OC = "Template:ArbComOpenTasks/Cases"
 ARCA = "Template:ArbComOpenTasks/ClarificationAmendment"
 AM = "Template:ArbComOpenTasks/Motions"
+##Categories
+OpenArbCaseCat = "Open ArbCom Cases"
 ##Bot related
 
 #Bot Templates

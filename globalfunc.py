@@ -17,13 +17,42 @@ useWiki = pywikibot.Site('en', 'wikipedia')
 
 def callArbPageCollect():
     global arcpage
-    arcpage = pageRetrival(localconfig.#########
+    arcpage = catRetrival(localconfig.OpenArbCaseCat)
+    print arcpage
 
-def pageRetrival(page)
+def callAPI(params):
+    print params
+    req = api.Request(site,**params)
+    return req.submit()
+
+def pageRetrival(page):
     site = pywikibot.getSite()
     pagename = page
     page = pywikibot.Page(site, pagename)
     return page.get()
+
+def catRetrival(category):
+    category = "Category:" + category
+    site= pywikibot.getSite()
+    params = {'action': 'query',
+        	'list': 'categorymembers',
+        	'cmtitle': category,
+                'cmnamespace':'4',
+                'cmlimit':'500',
+                'format':'json',
+                'rawcontinue':'1'
+                }
+    raw = callAPI(params)
+    reg = raw["query"]["categorymembers"]
+    reg = formatArray(reg)
+    return reg
+
+def formatArray(database):
+    i = 0
+    cases = []
+    for entry in database:
+        cases = cases + [entry["title"]]
+    return cases
 
 def run(start):
     callArbPageCollect()
