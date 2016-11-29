@@ -1,5 +1,29 @@
-from datetime import datetime import sys import platform import time
-import json import re import traceback
+"""
+(C) 2016 DeltaQuad (enwp.org/User:DeltaQuad)
+
+This file is part of DeltaQuadBot.
+
+DeltaQuadBot is free software: you can redistribute it and/or modify
+it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+DeltaQuadBot is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU AFFERO GENERAL PUBLIC LICENSE for more details.
+
+You should have received a copy of the GNU AFFERO GENERAL PUBLIC LICENSE
+along with DeltaQuadBot. If not, see <https://www.gnu.org/licenses/agpl.txt>.
+"""
+
+from datetime import datetime
+import sys
+import platform
+import time
+import json
+import re
+import traceback
 
 import localconfig
 if platform.system() == "Windows":
@@ -36,7 +60,7 @@ def callARCA():
             if name not in tacot:
                     continue
             else:
-                    removed += name
+                    removed += name +","
     #Check if preexist
     for arcaline in arcaleveltwo:
             if acraline in removed or acraline in tacot:
@@ -58,8 +82,7 @@ def checkCat(name):
                 if entry == name:return True
         return False
 def getHeaders(text):
-    return re.findall("^==([A-Za-z0-9]*| *)==",text,re.M) + (re.findall("^== ([A-Za-z0-9]*) ==",text,re.M)
-                    
+    return re.findall("^==([A-Za-z0-9]*| *)==",text,re.M) + (re.findall("^== ([A-Za-z0-9]*) ==",text,re.M))
 
 def callAPI(params):
     req = api.Request(useWiki,**params)
@@ -102,21 +125,16 @@ def run(start):
     ################################
     callArbCaseRequests()
     callArbPageCollect()
-    callTACOTProcessing(start)
     
 
 def callTACOTProcessing(start):
     
-
     #ARC
     pageRetrival(localconfig.ARC).split("</noinclude>")[1]
-
     #Open
     pageRetrival(localconfig.OC).split("</noinclude>")[1]
-
     #ARCA
     pageRetrival(localconfig.ARCA).split("</noinclude>")[1]
-
     #Motions
     pageRetrival(localconfig.AM).split("</noinclude>")[1]
 
